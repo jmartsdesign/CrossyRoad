@@ -1,4 +1,4 @@
-/*
+/* Função do player
 
 */
 class Player extends Rectangle { // extends-Permite que uma nova classe herde os métodos e campos de dados (variáveis ​​e constantes) de uma classe existente.

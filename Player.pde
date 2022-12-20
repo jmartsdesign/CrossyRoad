@@ -28,5 +28,7 @@ class Player extends Rectangle { // extends-Permite que uma nova classe herde os
   void move(float xdir, float ydir) {  // faz mover o retangulo do player
     x += xdir * grid;
     y += ydir * grid;
+     x = constrain(x,0,width-grid); // impede o player sair do lados do ecran
+    y = constrain(0,y,height-grid*8);  // impede o player de sair da área do ecran em por cima
   }
 }

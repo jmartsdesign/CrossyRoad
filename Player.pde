@@ -1,12 +1,14 @@
-/* Função do player
+/*
 
 */
 class Player extends Rectangle { // extends-Permite que uma nova classe herde os métodos e campos de dados (variáveis ​​e constantes) de uma classe existente.
 
   Log attached = null; // variavel que vai fazer com que o player acompanhe a log
+  PImage playerImage; // função que chama a image frame do player
 
   Player(float x, float y, float w) {
     super (x, y, w, w);  // super -Palavra-chave usada para referenciar a superclasse de uma subclasse.
+    playerImage = loadImage("frog-sprite.png");  // carrega a imagem do player
   }
 
   void attach(Log log) { // função que vai fazer com que o player acompanhe a log
@@ -21,14 +23,15 @@ class Player extends Rectangle { // extends-Permite que uma nova classe herde os
   }
 
   void show() {
-    fill(255,170);
-    rect(x, y, w, w);
+    //fill(255,170);
+    //rect(x, y, w, w);
+    image(playerImage, x, y, this.w, this.w);  // desenha a imagem do player num quadrado
   }
 
   void move(float xdir, float ydir) {  // faz mover o retangulo do player
     x += xdir * grid;
     y += ydir * grid;
-     x = constrain(x,0,width-grid); // impede o player sair do lados do ecran
+    x = constrain(x,0,width-grid); // impede o player sair do lados do ecran
     y = constrain(0,y,height-grid*8);  // impede o player de sair da área do ecran em por cima
   }
 }

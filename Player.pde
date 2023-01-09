@@ -3,16 +3,16 @@
 */
 class Player extends Rectangle { // extends-Permite que uma nova classe herde os métodos e campos de dados (variáveis ​​e constantes) de uma classe existente.
 
-  Log attached = null; // variavel que vai fazer com que o player acompanhe a log
+  Rena attached = null; // variavel que vai fazer com que o player acompanhe a log
   PImage playerImage; // função que chama a image frame do player
 
   Player(float x, float y, float w) {
     super (x, y, w, w);  // super -Palavra-chave usada para referenciar a superclasse de uma subclasse.
-    playerImage = loadImage("frog-sprite.png");  // carrega a imagem do player
+    playerImage = loadImage("data/NoelPlayer.png");  // carrega a imagem do player
   }
 
-  void attach(Log log) { // função que vai fazer com que o player acompanhe a log
-    attached = log;
+  void attach(Rena rena) { // função que vai fazer com que o player acompanhe a log
+    attached = rena;
   }
 
   void update() {  // função para que o player acompanhe a log á mesma velocidade

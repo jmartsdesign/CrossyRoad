@@ -2,7 +2,7 @@
 //https://www.youtube.com/watch?v=06-ZvYmSeus&ab_channel=TheCodingTrain
 
 // identificar as classes e arrays
-Player player;
+Player player; // chama a classe player
 // Car car;  // chama função car
 Boy[] boys; // array CAR
 Rena[] renas; // array objetos madeira
@@ -10,6 +10,7 @@ Lane[] lanes; //  array Linhas do nivel
 
 PImage menuImage; // função que chama a image frame titulo
 PImage nivelImage0;
+PImage menuImage2;
 
 //-- importa biblioteca de som
 import processing.sound.*;
@@ -28,9 +29,9 @@ int mode = 0;
 int SAFETY = 0; // variavel para saber se mata ou não player
 int CAR = 1; // mata player
 int LOG = 2; // não mata
-
+int avatar=1;
 int FINISH_LIVES = 0;
-int lives = 6;
+int lives = 57;
 PFont f;
 
 /*
@@ -39,7 +40,7 @@ PFont f;
  2 end game */
 Button StartButton;
 Button button [];
-int t, Mt = 3000;
+int t, Mt = 500; // tempo duração da barra =1000
 boolean time=false;
 //max time (Mt) ten de ser medido com o frameRate o jogo pra saber o tempo em segundos
 //FE: 60fps means that one second is 60 frames and if you increase t by one each frame it will take it 60 frames to reach one second t=60 == 1 second
@@ -50,6 +51,7 @@ boolean playing = true; // variavel que indica que está a musica a tocar
 void resetGame() {
   player = new Player(width/2-grid/2, height-grid, grid);
   player.attach(null); // desasocia o player da loog
+  lives --;
 }
 
 void setup() {
@@ -97,8 +99,13 @@ void reset() {
 void draw() {
   background(0);
   // ------------------------------Sidonia
+  // switch Funciona como uma estrutura if else, mas alternar é mais conveniente quando você
+  //precisa selecionar entre três ou mais alternativas.
   switch(menu) {
   case 0:// Game play
+    menu=0;
+    resetGame();
+    reset();
     menuImage = loadImage("Data/menu.jpg");  // carrega a imagem inicio
     image(menuImage, 0, 0, width, height);
     fill(255);
@@ -106,26 +113,52 @@ void draw() {
     textAlign(LEFT);
     text ("Pause game", 20, height-35);
     text ("Som on/off", 20, height-20);
-    StartButton.update();
-    StartButton.render();
+    //    StartButton.update();
+    //    StartButton.render();
     button[0].update();
     button[0].render();
     button[1].update();
     button[1].render();
-    if (StartButton.isClicked())
-      menu=1;
+    button[5].render();
+    button[5].update();
+    if (button[5].isClicked())
+      menu=5;
+    //if (StartButton.isClicked())
+    //  menu=1;
     if (button[0].isClicked())
       menu =1;
     if (button[1].isClicked())
       menu= 3;
     break;
 
+  case 5:
+    button[3].update();
+    button[3].render();
+    button[4].update();
+    button[4].render();
+    if (button[3].isClicked()) {
+      menu=0;
+      avatar=1;
+    }
+    menuImage2=loadImage("data/1.png");
+    image(menuImage2, 320, 220);
+    if (button[4].isClicked()) {
+      menu=0;
+      avatar=2;
+    }
+    menuImage2=loadImage("Data/2.png");
+    image(menuImage2, 320, 290);
+    break;
+
   case 1: // level 1   // ------------------------------------Sidonia
     nivelImage0 = loadImage("Data/nivel0.jpg");  // carrega a imagem fundo nivel
     image(nivelImage0, 0, 0, width, height);
+    textSize (30);
+    fill (#FFF64B);
+    //   text ("Points:", 310, 40); // ------------------------------------Sidonia
     // player
     noStroke();
-
+    //--
     // desenha os inimigos por limha e verfica se o player colide com eles
     for (int i = 0; i < lanes.length; i++) {
       lanes[i].run();
@@ -137,20 +170,21 @@ void draw() {
 
     player.update();
     player.show();  // desemha o player
- //   displayLives();
- //   displayFinished();
+    //   displayLives();
+    //   displayFinished();
 
     // verifica as vidas
-    if (lives <= FINISH_LIVES) {
-      displayFinished();
+    if (lives == FINISH_LIVES) {
+      // displayFinished();
+      loseShow();
     } else {
       displayLives();
     }
     // chega ao final ganha
     if (player.y <= 25) // se jogador chegar ao topo
-      winShow(); // chama função do fim de nivel
+      // winShow(); // chama função do fim de nivel sem botao
 
-    displayLives();
+      displayLives();
 
     //------------------------------------Sidonia
     if (t<Mt && !time)
@@ -159,50 +193,42 @@ void draw() {
       time=true;
     else
       time=false;
-    //  println(time, t);
+    //println(time, t);
     fill(map(t, 0, Mt, 0, 255), map(t, 0, Mt, 255, 0), 0);
     rect(0, height/40, map(t, 0, Mt, 1, width), 20);
-
+    if (player.y<50)
+      menu=3;
+    if (time)
+      menu=4;
+    //if (player position is on the win space) then change menu to respective value
+    //FE if win menu = 2;
     break;
 
-    //-------------------------------------------------------------------------------------------------
-  case 3: // level 2
-    // player
-    fill(255, 100);
-    rect(0, 0, width, grid*4); // desenha a barra da chegada
-    rect(0, height-grid, width, grid); // desenha a barra (passeio) de inicio
-    rect(0, height-grid*8, width, grid); // desenha 2 passeio depois da ROW 3
-    for (Boy boy : boys) {  // desenha os carros seguidos
-      boy.show();
-      boy.update();
-      if (player.intersects(boy)) { // se player colide com retangulos volta á sua posição inicial
-        resetGame();
-        //   println("Game Over");
-      }
-    }
-    for (Rena log : renas) {  // desenha as tabuas seguidas
-      log.show();
-      log.update();
-    }
-    if (player.y < height-grid*7 && player.y > grid*4) {
-      //background(255,0,0); // teste para saber quando o player não acerta os logs
-      boolean ok = false;
-      for (Rena log : renas) {
-        if (player.intersects(log)) {
-          ok = true;
-          player.attach(log); // adiciona o player á log
-        }
-      }
-      if (!ok) {
-        resetGame();
-      }
-    } else {  // faz com que o player deixe de acompamhar os logs quando desde para o passeio (safe zone)
-      player.attach(null);
-    }
-    player.update();
-    player.show();  // desemha o player
+  case 3: // Quando ganha chama função Win
+    winShow();
+    StartButton.update();
+    StartButton.render();
+    if (StartButton.isClicked())
+      menu=0;
+    reset();  // reset();
+    resetGame();
     break;
-    // ------------------------------------Sidonia
+
+  case 4://loose
+    loseShow();
+    //  fill(#FBFF24);
+    //  textSize (60);
+    //   textAlign(CENTER, CENTER);
+    //   text ("LOOSE", width/2, 250);
+    //  button[2].update();
+    //  button[2].render();
+    StartButton.update();
+    StartButton.render();
+    if (StartButton.isClicked())
+      menu=0;
+    reset();  // reset();
+    resetGame();
+    break;
   }
 }
 
@@ -243,10 +269,10 @@ void displayLives() {
   text("Lives left " + lives, 20, height-25);
 }
 
-// Função fim de vida
+/* Função fim de vida
 void displayFinished() {
   textFont(f, 20);
   fill(0);
   textAlign(CENTER);
   text("GAME OVER", width/2, height-25);
-}
+}*/

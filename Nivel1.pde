@@ -32,7 +32,49 @@
      }
      } else {  // faz com que o player deixe de acompamhar os logs quando desde para o passeio (safe zone)
      player.attach(null);
-     }*/
+     }
+     
+         //-------------------------------------------------------------------------------------------------
+  case 3: // level 2
+    // player
+    fill(255, 100);
+    rect(0, 0, width, grid*4); // desenha a barra da chegada
+    rect(0, height-grid, width, grid); // desenha a barra (passeio) de inicio
+    rect(0, height-grid*8, width, grid); // desenha 2 passeio depois da ROW 3
+    for (Boy boy : boys) {  // desenha os carros seguidos
+      boy.show();
+      boy.update();
+      if (player.intersects(boy)) { // se player colide com retangulos volta á sua posição inicial
+        resetGame();
+        //   println("Game Over");
+      }
+    }
+    for (Rena log : renas) {  // desenha as tabuas seguidas
+      log.show();
+      log.update();
+    }
+    if (player.y < height-grid*7 && player.y > grid*4) {
+      //background(255,0,0); // teste para saber quando o player não acerta os logs
+      boolean ok = false;
+      for (Rena log : renas) {
+        if (player.intersects(log)) {
+          ok = true;
+          player.attach(log); // adiciona o player á log
+        }
+      }
+      if (!ok) {
+        resetGame();
+      }
+    } else {  // faz com que o player deixe de acompamhar os logs quando desde para o passeio (safe zone)
+      player.attach(null);
+    }
+    player.update();
+    player.show();  // desemha o player
+    break;
+    // ------------------------------------Sidonia
+  }
+     
+     */
 
 void nivelShow() {
 

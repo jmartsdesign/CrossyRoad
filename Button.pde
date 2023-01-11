@@ -48,4 +48,8 @@ void loadButton() {
   //Button ( int x, int y, int w, int h, String T, int r, int g, int b){
   button[0] = new Button(205, 220, 100, 50, "Level 1", 0, 200, 200);
   button[1] = new Button(205, 290, 100, 50, "Level 2", 0, 200, 200);
+  button[2] = new Button(205, 290, 100, 50, "Level 3", 0, 200, 200);
+  button[3] = new Button(205, 360, 100, 50, "Level 4", 0, 200, 200);
+  button[4] = new Button(205, 430, 100, 50, "Level 5", 0, 200, 200);
+  button[5] = new Button(205, 437, 100, 50, "Level 6", 0, 200, 200);
 }

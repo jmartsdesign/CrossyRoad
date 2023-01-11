@@ -57,5 +57,15 @@ class Lane extends Rectangle {
       player.attach(null);
     }
   }
+/*
+  void run() {
+    fill(col,col1,col2);
+    rect(x, y, w, h);
+    for (Obstacle o : obstacles) {  // substitui o ciclo for = for (int i = 0; i < renas.length; i++)
+      o.show();
+      o.update();
+    }
+  }
+*/
 
 }

@@ -132,7 +132,7 @@ void draw() {
     for (int i = 0; i < lanes.length; i++) {
       lanes[i].run();
     }
-    int laneIndex = int(player.y / grid);
+    int laneIndex = int(player.y / grid); // numero inicial do player por linha
     lanes[laneIndex].checkPlayer(player);
     player.update();
     player.show(avatar);  // desemha o player

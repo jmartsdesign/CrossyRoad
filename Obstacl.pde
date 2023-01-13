@@ -30,7 +30,6 @@ class Obstacl extends Rectangle {
   }
 
   void show(int type, int lObst) {
-    // rect(x, y, w, h);
     if (lObst == 1) {
       if (type == CAR) {
         if (speed < 0) { // desenha a imagem do player em sentido oposto caso movimento negativo
@@ -48,15 +47,15 @@ class Obstacl extends Rectangle {
     } else if (lObst == 2) {
       if (type == CAR) {
         if (speed < 0) { // desenha a imagem do player em sentido oposto caso movimento negativo
-          image(playerImageC1, x, y, w, h);
+          image(playerImageD, x, y, w, h);
         } else {
-          image(playerImageC, x, y, w, h);  // desenha a imagem do player num quadrado
+          image(playerImageD1, x, y, w, h);  // desenha a imagem do player num quadrado
         }
       } else if (type == LOG) {
         if (speed < 0) { // desenha a imagem do player em sentido oposto caso movimento negativo
-          image(playerImageD1, x, y, w, h);
+          image(playerImageC, x, y, w, h);
         } else {
-          image(playerImageD, x, y, w, h);  // desenha a imagem do player num quadrado
+          image(playerImageC1, x, y, w, h);  // desenha a imagem do player num quadrado
         }
       }
     }

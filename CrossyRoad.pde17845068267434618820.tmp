@@ -21,13 +21,13 @@ int SAFETY = 0; // variavel para saber se mata ou não player
 int CAR = 1; // mata player
 int LOG = 2; // não mata
 int avatar=1;
-int nolives = 0, lives=4;
+int FINISH_LIVES = 0, lives=4;
 PFont f;
 
 Button StartButton;
 Button button [];
 int t = 0, Mt = 500; // tempo duração da barra =1000
-boolean time = false;
+boolean time=false;
 //max time (Mt) ten de ser medido com o frameRate o jogo pra saber o tempo em segundos
 //FE: 60fps means that one second is 60 frames and if you increase t by one each frame it will take it 60 frames to reach one second t=60 == 1 second
 
@@ -41,8 +41,6 @@ void resetGame() {
 }
 
 void reset() {
-  lives = 4;
-  t = 0;
   // state = 0;
   // mode = 1;
 }
@@ -64,15 +62,15 @@ void setup() {
   int totalLanes = int(height / grid);
   lanes = new Lane[totalLanes];
   lanes[0] = new Lane(0, color(100, 0));
-  lanes[1] = new Lane(1, color(100, 0));
-  lanes[2] = new Lane(2, LOG, 2, 2, 350, -2);
-  lanes[3] = new Lane(3, LOG, 3, 2, 200, 1);
+  lanes[1] = new Lane(0, color(100, 0));
+  lanes[2] = new Lane(2, LOG, 2, 3, 350, -2);
+  lanes[3] = new Lane(3, LOG, 4, 1, 200, 1);
   lanes[4] = new Lane(4, LOG, 3, 2, 250, -2);
   lanes[5] = new Lane(5, color(100, 0));
-  lanes[6] = new Lane(6, CAR, 4, 1, 100, 2);
-  lanes[7] = new Lane(7, CAR, 4, 1, 150, -5);
-  lanes[8] = new Lane(8, CAR, 5, 1, 180, 2);
-  lanes[9] = new Lane(9, color(100, 0));
+  lanes[6] = new Lane(6, CAR, 3, 1, 150, 2);
+  lanes[7] = new Lane(7, CAR, 2, 2, 150, -3);
+  lanes[8] = new Lane(8, CAR, 1, 3, 150, 2);
+  lanes[9] = new Lane(10, color(100, 0));
 }
 
 void draw() {
@@ -137,19 +135,20 @@ void draw() {
     player.update();
     player.show(avatar);  // desemha o player
     displayTime(); // chama função da barra do tempo de jogo
+    // verifica as vidas
 
+    // chega ao final ganha
     if (player.y <= 25) { // se jogador chegar ao topo
       menu=3;
-    } else if (lives == nolives) {
+    } else if (lives == FINISH_LIVES) {
       menu = 4;
-    } else {
+       } else {
       displayLives(lives);
     }
     break;
 
   case 3: // Quando ganha chama função Win
     winShow();
-    reset();
     resetGame();
     StartButton.update();
     StartButton.render();
@@ -159,7 +158,6 @@ void draw() {
 
   case 4://loose
     loseShow();
-    reset();
     resetGame();
     StartButton.update();
     StartButton.render();
@@ -223,6 +221,8 @@ void displayTime() {
     t = 0;
     menu=3;
   }
-  if (time)
+  if (time) {
+    t = 0;
     menu=4;
+  }
 }

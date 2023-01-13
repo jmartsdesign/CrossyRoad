@@ -21,11 +21,8 @@ class Boy extends Rectangle {
   }
 
   void show() {
-    //fill(200);
-    // rect(x, y, w, h);
-    //    image(playerImage,x, y, w, h);  // desenha a imagem do player num quadrado
     if (speed < 0) { // desenha a imagem do player em sentido oposto caso movimento negativo
-      image(playerImage1, x, y, w, h);
+      image(playerImage1, x, y, w, h); // desenha a imagem do player num quadrado
     } else {
       image(playerImage, x, y, w, h);
     }

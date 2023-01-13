@@ -23,17 +23,15 @@ class Button {
         Clicked= true;
       }
     } else {
-
-      Clicked= false;
+      Clicked = false;
     }
-    if (mousePressed !=true) {
-
-      Pressed= false;
+    if (mousePressed != true) {
+      Pressed = false;
     }
   }
   void render () {
     fill(Colour);
-    rect(Pos.x, Pos.y, Width, Height);
+    rect(Pos.x, Pos.y, Width, Height,20);
     fill(0);
     textAlign(CENTER, CENTER);
     textSize(18);
@@ -44,12 +42,11 @@ class Button {
   }
 }
 void loadButton() {
-  button =new Button [6];
+  button = new Button [5];
   //Button ( int x, int y, int w, int h, String T, int r, int g, int b){
   button[0] = new Button(205, 220, 100, 50, "Level 1", 0, 200, 200);
   button[1] = new Button(205, 290, 100, 50, "Level 2", 0, 200, 200);
-  button[2] = new Button(205, 290, 100, 50, "Level 3", 0, 200, 200);
-  button[3] = new Button(205, 360, 100, 50, "Level 4", 0, 200, 200);
-  button[4] = new Button(205, 430, 100, 50, "Level 5", 0, 200, 200);
-  button[5] = new Button(205, 437, 100, 50, "Level 6", 0, 200, 200);
+  button[2] = new Button(205, 360, 100, 50, "Players", 0, 200, 200);
+  button[3] = new Button(205, 220, 100, 50, "Player 1", 0, 200, 200);
+  button[4] = new Button(205, 290, 100, 50, "Player 2", 0, 200, 200);
 }

@@ -19,23 +19,24 @@ class Lane extends Rectangle {
     for (int i = 0; i < obAmount; i++) {
       renas[i] = new Rena(offset + spacing * i, rowNum * grid, grid * len, grid, speed);
     }
-    laneColor = color(100,0);
+    laneColor = color(100, 0);
   }
 
   void show() {
-  //  fill(laneColor);
-  //  rect(x, y, this.w, this.h);
+    //  fill(laneColor);
+    //  rect(x, y, this.w, this.h);
   }
 
   void run() {
     show();
     for (int i = 0; i < renas.length; i++) {
-      renas[i].show();
+      renas[i].show(type);
       renas[i].update();
     }
   }
 
   void checkPlayer(Player player) {
+    
     if (type == CAR) {
       for (int i = 0; i < renas.length; i++) {
         if (player.intersects(renas[i])) {
@@ -53,19 +54,8 @@ class Lane extends Rectangle {
       if (!ok) {
         resetGame();
       }
-     } else {  // faz com que o player deixe de acompamhar os logs quando desde para o passeio (safe zone)
+    } else {  // faz com que o player deixe de acompamhar os logs quando desde para o passeio (safe zone)
       player.attach(null);
     }
   }
-/*
-  void run() {
-    fill(col,col1,col2);
-    rect(x, y, w, h);
-    for (Obstacle o : obstacles) {  // substitui o ciclo for = for (int i = 0; i < renas.length; i++)
-      o.show();
-      o.update();
-    }
-  }
-*/
-
 }

@@ -1,10 +1,10 @@
 /* Rectangulo de calculo de colisão dos objetos
+Esta função é a que calcula as colisões entre o player e os obstaculos
  Retirado do Coding Challenge de Daniel Shiffman
  https://www.youtube.com/watch?v=giXV6xErw0Y&ab_channel=TheCodingTrain
  */
 
 class Rectangle {
-
   float x;
   float y;
   float w;

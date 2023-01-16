@@ -1,40 +1,40 @@
 // Clase que cria e gere o player
 
-class Player extends Rectangle { // extends-Permite que uma nova classe herde os métodos e campos de dados (variáveis ​​e constantes) de uma classe existente.
+class Player extends Rectangle {
 
-  Obstacl attached = null; // variavel que vai fazer com que o player acompanhe a log
-  PImage playerImage; // função que chama a image frame do player
+  Obstacl attached = null;        // Variável que vai fazer com que o player acompanhe o obstáculo do tipo "Eny"
+  PImage playerImage;       
   PImage playerImage1;
 
   Player(float x, float y, float w) {
-    super (x, y, w, w);  // super -Palavra-chave usada para referenciar a superclasse de uma subclasse.
-    playerImage = loadImage("data/NoelPlayer.png");  // carrega a imagem do player
+    super (x, y, w, w); 
+    playerImage = loadImage("data/NoelPlayer.png");
     playerImage1 = loadImage("data/2.png");
   }
 
-  void attach(Obstacl obst) { // função que vai fazer com que o player acompanhe a log
+  void attach(Obstacl obst) {     // Função que vai fazer com que o player acompanhe o obstáculo do tipo "Eny"
     attached = obst;
   }
 
-  void update() {  // função para que o player acompanhe a log á mesma velocidade
+  void update() {                 // Função para que o player acompanhe a log à mesma velocidade
     if (attached != null) {
       player.x += attached.speed;
-    } // faz com que o player quando atinge limite do ecran não o passe e deslize sobre as logs
-    player.x = constrain(x, 0, width-w); // constrain-Restringe um valor para não exceder um valor máximo e mínimo.
+    }                                    // Faz com que o player, quando atinge o limite do ecrã não o passe e deslize sobre o obstáculo do tipo "Eny"
+    player.x = constrain(x, 0, width-w); // Restringe um valor para não exceder um valor máximo e mínimo
   }
 
-  void show(int ava) { // função com argumento do avatar
+  void show(int ava) {
     if (ava == 1) {
-      image(playerImage, x, y, this.w, this.w);  // desenha a imagem do player num quadrado
+      image(playerImage, x, y, this.w, this.w); 
     } else {
       image(playerImage1, x, y, this.w, this.w);
     }
   }
 
-  void move(float xdir, float ydir) {  // faz mover o retangulo do player
+  void move(float xdir, float ydir) {  // Faz mover o retangulo do player
     x += xdir * grid;
     y += ydir * grid;
-    x = constrain(x, 0, width-w); // impede o player sair do lados do ecran
-    y = constrain(y, 0, height-h);  // impede o player de sair da área do ecran em baixo
+    x = constrain(x, 0, width-w);      // Impede o player sair do lados do ecrã
+    y = constrain(y, 0, height-h);     // Impede o player de sair da área do ecrã em baixo
   }
 }

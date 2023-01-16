@@ -1,19 +1,18 @@
-// log - madeira
 class Obstacl extends Rectangle {
 
-  PImage playerImage, playerImage1; // função que chama a image frame do player
+  PImage playerImage, playerImage1;
   PImage playerImageB, playerImageB1;
   PImage playerImageC, playerImageC1;
   PImage playerImageD, playerImageD1;
   float speed;
 
   Obstacl(float x, float y, float w, float h, float s) {
-    super (x, y, w, h);  // super -Palavra-chave usada para referenciar a superclasse de uma subclasse.
+    super (x, y, w, h);
     speed = s;
-    playerImage = loadImage("Data/Rena1.png");  // carrega a imagem do player
-    playerImage1 = loadImage("Data/Rena2.png");  // carrega a imagem do player
-    playerImageB = loadImage("Data/Boy1.png");  // carrega a imagem do player
-    playerImageB1 = loadImage("Data/Boy2.png");  // carrega a imagem do player
+    playerImage = loadImage("Data/Rena1.png");  
+    playerImage1 = loadImage("Data/Rena2.png"); 
+    playerImageB = loadImage("Data/Boy1.png");  
+    playerImageB1 = loadImage("Data/Boy2.png");
     playerImageC = loadImage("Data/EnyR1.png");
     playerImageC1 = loadImage("Data/EnyR2.png");
     playerImageD = loadImage("Data/Eny1.png");
@@ -22,9 +21,9 @@ class Obstacl extends Rectangle {
 
   void update() {
     x = x + speed;
-    if (speed > 0 && x > width+grid) { // o obstaculo chega ao final do lado direito e volta a aparecer no esquerdo e faz o inverso
-      x = -w-grid; // delay de atraso para voltar a aparecer
-    } else if (speed < 0 && x < -w-grid) {  // faz o oposto pois continua do lado direito para o esquerdo
+    if (speed > 0 && x > width+grid) {        // O obstáculo chega ao final do lado direito e volta a aparecer no esquerdo e vice-versa
+      x = -w-grid;                            // Delay de atraso para voltar a aparecer
+    } else if (speed < 0 && x < -w-grid) {  
       x = width+grid;
     }
   }
@@ -32,30 +31,30 @@ class Obstacl extends Rectangle {
   void show(int type, int lObst) {
     if (lObst == 1) {
       if (type == CAR) {
-        if (speed < 0) { // desenha a imagem do player em sentido oposto caso movimento negativo
+        if (speed < 0) {                      // Desenha a imagem do player no sentido oposto caso movimento negativo
           image(playerImageB1, x, y, w, h);
         } else {
-          image(playerImageB, x, y, w, h);  // desenha a imagem do player num quadrado
+          image(playerImageB, x, y, w, h);    // Desenha a imagem do player num quadrado
         }
       } else if (type == LOG) {
-        if (speed < 0) { // desenha a imagem do player em sentido oposto caso movimento negativo
+        if (speed < 0) {              
           image(playerImage1, x, y, w, h);
         } else {
-          image(playerImage, x, y, w, h);  // desenha a imagem do player num quadrado
+          image(playerImage, x, y, w, h);
         }
       }
     } else if (lObst == 2) {
       if (type == CAR) {
-        if (speed < 0) { // desenha a imagem do player em sentido oposto caso movimento negativo
+        if (speed < 0) { 
           image(playerImageD, x, y, w, h);
         } else {
-          image(playerImageD1, x, y, w, h);  // desenha a imagem do player num quadrado
+          image(playerImageD1, x, y, w, h); 
         }
       } else if (type == LOG) {
-        if (speed < 0) { // desenha a imagem do player em sentido oposto caso movimento negativo
+        if (speed < 0) { 
           image(playerImageC, x, y, w, h);
         } else {
-          image(playerImageC1, x, y, w, h);  // desenha a imagem do player num quadrado
+          image(playerImageC1, x, y, w, h);
         }
       }
     }

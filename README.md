@@ -1,6 +1,8 @@
 # CrossyRoad
 Mini progect in Processing
 
+Design of the simplified variation of the arcade game "Crossy Road"
+
 Codigo de exemplo para trabalho
 https://openprocessing.org/sketch/1024265/
 

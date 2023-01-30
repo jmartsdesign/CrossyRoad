@@ -1,4 +1,4 @@
-// Classe que cria as linhas do nivel do jogo
+// Classe que cria as linhas do nível do jogo
 
 class Lane extends Rectangle {
   Obstacl[] obst;
@@ -23,11 +23,6 @@ class Lane extends Rectangle {
     laneColor = color(100, 0);
   }
 
-//  void show() {
-    //   fill(laneColor);
-    //   rect(x, y, this.w, this.h);
-// }
-
   void run() {
     for (int i = 0; i < obst.length; i++) {
       obst[i].show(type, levelObst);
@@ -36,7 +31,6 @@ class Lane extends Rectangle {
   }
 
   void checkPlayer(Player player) {
-
     if (type == CAR) {
       for (int i = 0; i < obst.length; i++) {
         if (player.intersects(obst[i])) {
@@ -54,7 +48,7 @@ class Lane extends Rectangle {
       if (!ok) {
         resetGame();
       }
-    } else {  // faz com que o player deixe de acompamhar os logs quando desde para o passeio (safe zone)
+    } else {                // Faz com que o personagem deixe de acompanhar os obstáculos do tipo "Eny"
       player.attach(null);
     }
   }

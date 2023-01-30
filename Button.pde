@@ -18,6 +18,7 @@ class Button {
     Colour=color (r, g, b);
     Text=T;
   }
+  
   void update() {
     if (mousePressed == true && mouseButton == LEFT && Pressed == false) {
       Pressed= true;
@@ -31,6 +32,7 @@ class Button {
       Pressed = false;
     }
   }
+  
   void render () {
     fill(Colour);
     rect(Pos.x, Pos.y, Width, Height,20);
@@ -39,13 +41,14 @@ class Button {
     textSize(18);
     text(Text, Pos.x+(Width/2), Pos.y+(Height/2));
   }
+  
   boolean isClicked() {
     return Clicked;
   }
 }
+
 void loadButton() {
   button = new Button [5];
-  //Button ( int x, int y, int w, int h, String T, int r, int g, int b){
   button[0] = new Button(205, 220, 100, 50, "Level 1", 0, 200, 200);
   button[1] = new Button(205, 290, 100, 50, "Level 2", 0, 200, 200);
   button[2] = new Button(205, 360, 100, 50, "Players", 0, 200, 200);

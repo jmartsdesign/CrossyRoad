@@ -1,4 +1,4 @@
-# CrossyRoad
+# CrossyRoad Noel
 Mini progect in Processing
 
 Design of the simplified variation of the arcade game "Crossy Road"
